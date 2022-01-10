@@ -17,6 +17,8 @@ module.exports = {
     ecmaVersion: 'latest'
   },
   rules: {
-    'no-console': Rules.WARN
+    'no-console': Rules.WARN,
+    camelcase: Rules.OFF
+    // camelcase: [Rules.OFF, { properties: 'never', ignoreDestructuring: true, ignoreGlobals: true, ignoreImports: true }]
   }
 }
