@@ -7,6 +7,7 @@ const cors = require('cors')
 const helmet = require('helmet')
 
 const { system } = require('./config/variables')
+const { logErrors, errorHandler } = require('./middlewares/error_handler')
 
 server.use(cors())
 server.use(helmet())
@@ -14,6 +15,9 @@ server.use(express.json())
 server.use(express.urlencoded({ extended: true }))
 
 routerApi(server)
+
+server.use(logErrors)
+server.use(errorHandler)
 
 server.listen(system.port, () => {
   // eslint-disable-next-line no-console

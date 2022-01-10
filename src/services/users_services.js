@@ -14,6 +14,9 @@ class UserService {
 
   async getById ({ id }) {
     const user = this.table.find(user => user.id === id)
+    if (!user) {
+      throw new Error('user not found')
+    }
     return user || {}
   }
 
@@ -33,7 +36,7 @@ class UserService {
     const index = this.table.findIndex(user => user.id === id)
 
     if (index === -1) {
-      throw new Error('product not found')
+      throw new Error('user not found')
     }
 
     const changes = {
@@ -51,7 +54,7 @@ class UserService {
     const index = this.table.findIndex(user => user.id === id)
 
     if (index === -1) {
-      throw new Error('product not found')
+      throw new Error('user not found')
     }
 
     this.table.splice(index, 1)
