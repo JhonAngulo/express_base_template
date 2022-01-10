@@ -13,8 +13,8 @@ class UserService {
   }
 
   async getById ({ id }) {
-    const user = this.table.filter(user => user.id === id)
-    return user || []
+    const user = this.table.find(user => user.id === id)
+    return user || {}
   }
 
   async create ({ first_name, last_name, email, gender }) {
@@ -29,8 +29,32 @@ class UserService {
     return newUser || []
   }
 
+  async update ({ first_name, last_name, email, gender, id }) {
+    const index = this.table.findIndex(user => user.id === id)
+
+    if (index === -1) {
+      throw new Error('product not found')
+    }
+
+    const changes = {
+      ...this.table[index],
+      first_name,
+      last_name,
+      email,
+      gender
+    }
+    this.table[index] = changes
+    return this.table[index] || []
+  }
+
   async delete ({ id }) {
-    this.table = this.table.filter((user) => user.id !== id)
+    const index = this.table.findIndex(user => user.id === id)
+
+    if (index === -1) {
+      throw new Error('product not found')
+    }
+
+    this.table.splice(index, 1)
     return id
   }
 }
