@@ -13,7 +13,7 @@ const whiteList = system.allow_origin
 
 const options = {
   origin: (origin, callback) => {
-    if (whiteList.includes(origin)) {
+    if (whiteList.includes(origin) || !origin) {
       callback(null, true)
     } else {
       callback(new Error('not allowed'))
