@@ -4,7 +4,9 @@ require('dotenv').config()
 
 module.exports = {
   system: {
-    port: process.env.PORT
+    production: process.env.NODE_ENV === 'production',
+    port: process.env.PORT,
+    allow_origin: JSON.parse(process.env.ALLOW_ORIGIN)
   },
   db: {
     db_name: process.env.DB_NAME,

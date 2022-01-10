@@ -9,7 +9,19 @@ const helmet = require('helmet')
 const { system } = require('./config/variables')
 const { logErrors, boomErrorHandler, errorHandler } = require('./middlewares/error_handler')
 
-server.use(cors())
+const whiteList = system.allow_origin
+
+const options = {
+  origin: (origin, callback) => {
+    if (whiteList.includes(origin)) {
+      callback(null, true)
+    } else {
+      callback(new Error('not allowed'))
+    }
+  }
+}
+
+server.use(cors(system.production && options))
 server.use(helmet())
 server.use(express.json())
 server.use(express.urlencoded({ extended: true }))
