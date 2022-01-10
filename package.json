@@ -3,12 +3,13 @@
   "version": "0.0.1",
   "description": "express base template",
   "main": "server.js",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "nodemon": "latest"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon server",
+    "start": "node server"
   },
   "repository": {
     "type": "git",
