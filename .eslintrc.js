@@ -1,3 +1,9 @@
+const Rules = {
+  OFF: 'off',
+  WARN: 'warn',
+  ERROR: 'error'
+}
+
 module.exports = {
   env: {
     commonjs: true,
@@ -10,5 +16,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest'
   },
-  rules: {}
+  rules: {
+    'no-console': Rules.WARN
+  }
 }
