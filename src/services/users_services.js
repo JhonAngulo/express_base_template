@@ -18,6 +18,11 @@ class UserService {
     if (!user) {
       throw boom.notFound(`User id ${id} was not found`)
     }
+
+    if (!user.enable) {
+      throw boom.conflict(`User id ${id} was disabled`)
+    }
+
     return user || {}
   }
 
