@@ -7,7 +7,7 @@ const cors = require('cors')
 const helmet = require('helmet')
 
 const { system } = require('./config/variables')
-const { logErrors, errorHandler } = require('./middlewares/error_handler')
+const { logErrors, boomErrorHandler, errorHandler } = require('./middlewares/error_handler')
 
 server.use(cors())
 server.use(helmet())
@@ -17,6 +17,7 @@ server.use(express.urlencoded({ extended: true }))
 routerApi(server)
 
 server.use(logErrors)
+server.use(boomErrorHandler)
 server.use(errorHandler)
 
 server.listen(system.port, () => {

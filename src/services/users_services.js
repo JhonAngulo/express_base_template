@@ -1,6 +1,7 @@
 'use strict'
 
 const USERS = require('../mocks/USERS_MOCK_DATA.json')
+const boom = require('@hapi/boom')
 
 class UserService {
   constructor () {
@@ -15,7 +16,7 @@ class UserService {
   async getById ({ id }) {
     const user = this.table.find(user => user.id === id)
     if (!user) {
-      throw new Error('user not found')
+      throw boom.notFound(`User id ${id} was not found`)
     }
     return user || {}
   }
@@ -36,7 +37,7 @@ class UserService {
     const index = this.table.findIndex(user => user.id === id)
 
     if (index === -1) {
-      throw new Error('user not found')
+      throw boom.notFound(`User id ${id} was not found`)
     }
 
     const changes = {
@@ -54,7 +55,7 @@ class UserService {
     const index = this.table.findIndex(user => user.id === id)
 
     if (index === -1) {
-      throw new Error('user not found')
+      throw boom.notFound(`User id ${id} was not found`)
     }
 
     this.table.splice(index, 1)

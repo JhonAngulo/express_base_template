@@ -1,19 +1,9 @@
 'use strict'
 
-exports.success = ({ req, res, status = 200, message = '', data = [] }) => {
-  res.status(status).json({
-    status,
+exports.success = ({ req, res, statusCode = 200, message = '', data = [] }) => {
+  res.status(statusCode).json({
+    statusCode,
     data: data,
-    error: false,
-    message
-  })
-}
-
-exports.error = ({ req, res, status = 500, message = 'Internal server error', data = [] }) => {
-  res.status(status).json({
-    status,
-    data: data,
-    error: true,
     message
   })
 }

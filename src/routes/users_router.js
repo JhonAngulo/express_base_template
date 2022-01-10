@@ -5,12 +5,12 @@ const response = require('../middlewares/response_handler')
 const UserService = require('../services/users_services')
 const userService = new UserService()
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
   try {
     const users = await userService.getAll()
     response.success({ req, res, message: 'Users List', data: users })
   } catch (error) {
-    response.error({ req, res })
+    next(error)
   }
 })
 
@@ -33,7 +33,7 @@ router.post('/', async (req, res, next) => {
       const user = await userService.create({ first_name, last_name, email, gender })
       response.success({ req, res, message: 'User created', data: user, status: 201 })
     } else {
-      response.error({ req, res, message: 'missing required fields', status: 400 })
+      response.success({ req, res, message: 'missing required fields', status: 400 })
     }
   } catch (error) {
     next(error)
@@ -49,7 +49,7 @@ router.put('/:id', async (req, res, next) => {
       const userUpdate = await userService.update({ first_name, last_name, email, gender, id })
       response.success({ req, res, message: 'User updated', data: userUpdate })
     } else {
-      response.error({ req, res, message: 'Error updating user', status: 400 })
+      response.success({ req, res, message: 'Error updating user', status: 400 })
     }
   } catch (error) {
     next(error)
