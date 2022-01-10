@@ -1,0 +1,23 @@
+{
+  "name": "express_base_template",
+  "version": "0.0.1",
+  "description": "express base template",
+  "main": "server.js",
+  "dependencies": {
+    "nodemon": "latest"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JhonAngulo/express_base_template.git"
+  },
+  "author": "Jhon Manuel Angulo Moncada <jhonmanuelm89@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JhonAngulo/express_base_template/issues"
+  },
+  "homepage": "https://github.com/JhonAngulo/express_base_template#readme"
+}
